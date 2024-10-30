@@ -13,9 +13,9 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import tn.esprit.nascarjpcdatastorage.pages.AboutApp
-import tn.esprit.nascarjpcdatastorage.pages.Events
+import tn.esprit.nascarjpcdatastorage.pages.event.Events
 import tn.esprit.nascarjpcdatastorage.pages.News
-import tn.esprit.nascarjpcdatastorage.pages.Profile
+import tn.esprit.nascarjpcdatastorage.pages.profile.Profile
 
 
 @Composable

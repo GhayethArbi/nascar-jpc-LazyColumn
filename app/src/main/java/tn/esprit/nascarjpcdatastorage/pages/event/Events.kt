@@ -1,4 +1,4 @@
-package tn.esprit.nascarjpcdatastorage.pages
+package tn.esprit.nascarjpcdatastorage.pages.event
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues

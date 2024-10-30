@@ -1,6 +1,6 @@
-package tn.esprit.nascarjpcdatastorage.pages
+package tn.esprit.nascarjpcdatastorage.pages.profile
 
-import android.util.Log
+import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
@@ -27,10 +27,11 @@ import tn.esprit.nascarjpcdatastorage.R
 import tn.esprit.nascarjpcdatastorage.utils.AppDatabase
 
 @Composable
-fun EventsRow(event: Event) {
+fun BookMarkRow(event: Event,onItemRemoved: () -> Unit) {
     val context = LocalContext.current
     val eventDao = AppDatabase.getInstance(context).eventDao()
     val foundEvent = eventDao.getFindEventById(event.id)
+
 
     Card(
         colors = CardColors(
@@ -67,9 +68,10 @@ fun EventsRow(event: Event) {
                     style = MaterialTheme.typography.bodyMedium,
                     color = Color(0xFFFF0000)
                 )
-                BookmarkImage(
+                BookmarkImageDelete(
                     onClick = {
-                        handleEventBookmark(event, foundEvent, context)
+                        deleteEventBookmark(event, foundEvent, context)
+                        onItemRemoved()
                     }
                 )
             }
@@ -78,20 +80,17 @@ fun EventsRow(event: Event) {
 }
 
 @Composable
-fun BookmarkImage(onClick: () -> Unit) {
+fun BookmarkImageDelete(onClick: () -> Unit) {
     Image(
-        painter = painterResource(R.drawable.ic_bookmark_add),
+        painter = painterResource(R.drawable.ic_bookmark_remove),
         contentDescription = "Add Bookmark",
         modifier = Modifier.clickable(onClick = onClick)
     )
 }
 
-fun handleEventBookmark(event: Event, foundEvent: Event?, context: android.content.Context) {
-    if (foundEvent == null) {
-        Log.d("EventBookmark", "Adding event: $event")
-        AppDatabase.getInstance(context).eventDao().insertEvent(event)
-        Log.d("EventBookmark", "Event added successfully.")
-    } else {
-        Log.d("EventBookmark", "Event already exists: $foundEvent")
+fun deleteEventBookmark(event: Event, foundEvent: Event?, context: android.content.Context) {
+    if (foundEvent != null) {
+        AppDatabase.getInstance(context).eventDao().deleteEvent(event)
+        Toast.makeText(context , "Event removed successfully.", Toast.LENGTH_SHORT).show()
     }
 }

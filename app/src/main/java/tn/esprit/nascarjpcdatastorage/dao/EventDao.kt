@@ -17,7 +17,7 @@ interface EventDao {
     fun deleteEvent(events: Event)
 
     @Query("SELECT * FROM eventTable")
-    fun getAllEvent() : MutableList<Event>
+    fun getAllEvent() : List<Event>
     @Query("SELECT * FROM eventTable WHERE id like :id LIMIT 1")
     fun getFindEventById(id: Int) : Event?
 }

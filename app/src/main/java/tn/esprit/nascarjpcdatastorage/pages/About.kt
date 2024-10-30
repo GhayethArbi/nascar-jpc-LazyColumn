@@ -18,7 +18,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import tn.esprit.nascarjpcdatastorage.R
 
-@Preview
+@Preview(showBackground = true)
 @Composable
 fun AboutApp(){
     Column(
@@ -38,5 +38,6 @@ fun AboutApp(){
             fontSize = 18.sp,
 
         )
+
     }
 }
